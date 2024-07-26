@@ -41,5 +41,11 @@ class Agenda:
         self.eventos.append(evento)
         return f"Evento {evento.nome} adicionado com sucesso"
 
+    def validar_data_hora(self, data_hora_str):
+        try:
+            data_hora = datetime.strptime(data_hora_str, "%Y-%m-%d %H:%M")
+            return data_hora
+        except ValueError:
+            return None
     
     

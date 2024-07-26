@@ -9,8 +9,16 @@ def main():
         #funcao adicionar
         if acao == 'adicionar':
             nome = input("Digite o nome do evento: ").strip()
-            inicio = input("Digite a hora de início (YYYY-MM-DD HH:MM): ").strip()
-            termino = input("Digite a hora de término (YYYY-MM-DD HH:MM): ").strip()
+            inicio_str = input("Digite a hora de início (YYYY-MM-DD HH:MM): ").strip()
+            termino_str = input("Digite a hora de término (YYYY-MM-DD HH:MM): ").strip()
+
+            inicio = agenda.validar_data_hora(inicio_str)
+            termino = agenda.validar_data_hora(termino_str)
+
+            if (inicio or termino) == None:
+                print("Data formatada de forma errada. O formato correto é 'YYYY-MM-DD HH:MM'")
+                continue
+
             try:
                 evento = Evento(nome, inicio, termino)
                 resultado = agenda.adicionar_evento(evento)
